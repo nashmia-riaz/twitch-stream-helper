@@ -2,7 +2,7 @@
 var usersInChat = [];
 
 $(function(){
-var channelName = "YOUR TWITCH CHANNEL NAME HERE";
+var channelName = "MrsDiz";
 console.log("I'm ready, Mr. Krabs!");
 
 console.log(usersInChat);
@@ -67,25 +67,25 @@ ComfyJS.onCheer=(user, message, bits, flags, extra) => {
 }
 
 ComfyJS.onSub=(user, message, subTierInfo, extra) => {
-    console.log(user+' subbed. ', subTierInfo);
+    console.log(user+' subbed. ', subTierInfo.planName);
 
     AddEvent('https://img.icons8.com/material-sharp/24/42ff87/star.png',
-    user+' subbed with '+subTierInfo+' sub. They said: <span class="italic">"'+message+'"</span>.');
+    user+' subbed with '+subTierInfo.planName+' sub. They said: <span class="italic">"'+message+'"</span>.');
 }
 
 ComfyJS.onResub=(user, message, streamMonths, cumulativeMonths, subTierInfo, extra) => {
-    console.log(user+' subbed. ', subTierInfo);
+    console.log(user+' subbed. ', subTierInfo.planName);
 
     AddEvent('https://img.icons8.com/material-sharp/24/ffd000/star.png',
-    user+' subbed with '+subTierInfo+' sub. They\'ve been subbed for  <span class="bold">'+streamMonths+' months</span>.'+
+    user+' subbed with '+subTierInfo.planName+' sub. They\'ve been subbed for  <span class="bold">'+streamMonths+' months</span>.'+
      +'They said: <span class="italic">"'+message+'"</span>.');
 }
 
 ComfyJS.onSubGift=( gifterUser, streakMonths, recipientUser, senderCount, subTierInfo, extra ) => {
-    console.log(user+' subbed. ', subTierInfo);
+    console.log(user+' subbed. ', subTierInfo.planName);
 
     AddEvent('https://img.icons8.com/metro/26/42ff87/gift.png',
-    gifterUser+' gifted a '+subTierInfo+' sub to '+recipientUser+'. They\'ve gifted '+senderCount+' subs so far!');
+    gifterUser+' gifted a '+subTierInfo.planName+' sub to '+recipientUser+'. They\'ve gifted '+senderCount+' subs so far!');
 }
 
 ComfyJS.onGiftSubContinue=(user, sender, extra) => {
@@ -96,10 +96,10 @@ ComfyJS.onGiftSubContinue=(user, sender, extra) => {
 }
 
 ComfyJS.onSubMysteryGift=( gifterUser, numbOfSubs, senderCount, subTierInfo, extra ) => {
-    console.log(user+' subbed. ', subTierInfo);
+    console.log(user+' subbed. ', subTierInfo.planName);
 
     AddEvent('https://img.icons8.com/pastel-glyph/64/42ff87/christmas-gift--v2.png',
-    gifterUser+' gifted '+numbOfSubs+' '+subTierInfo+' subs to the channel! They\'ve gifted '+senderCount+' to the channel.');
+    gifterUser+' gifted '+numbOfSubs+' '+subTierInfo.planName+' subs to the channel! They\'ve gifted '+senderCount+' to the channel.');
 }
 
 ComfyJS.Init( channelName );

@@ -1,20 +1,15 @@
 
 var usersInChat = [];
-
+var emotes;
+var mG;
 $(function(){
-var channelName = "MrsDiz";
+var channelName = "p4nash";
 console.log("I'm ready, Mr. Krabs!");
 
 console.log(usersInChat);
 
 ComfyJS.onChat = ( user, command, message, flags, extra ) => {
-  var messageElement = "<div class='message'>"+
-    "<span class='userName bold'>"+user+"</span>"+
-    "<span class='messageContent'>"+command+"</span>"
-  +"</div>";
-
-  $('#messagesList').append(messageElement);
-  $('#messagesList').animate({scrollTop: $('#messagesList')[0].scrollHeight}, 500);
+  AddMessage(user, command, extra);
 }
 
 ComfyJS.onJoin=(user, self, extra) => {
@@ -117,6 +112,38 @@ function AddEvent(image, content){
   $('#eventsList').animate({scrollTop: $('#eventsList')[0].scrollHeight}, 500);
 }
 
+function AddMessage(user, message, extra){
+  emotes = extra.messageEmotes;
+  var finalMsg = formatEmotes(message, emotes);
+
+  var messageElement = "<div class='message'>"+
+    "<span class='userName bold'>"+user+"</span>"+
+    "<span class='messageContent'>"+finalMsg+"</span>"
+  +"</div>";
+
+  $('#messagesList').append(messageElement);
+  $('#messagesList').animate({scrollTop: $('#messagesList')[0].scrollHeight}, 500);
+}
+
+
+function formatEmotes(text, emotes) {
+    var splitText = text.split('');
+    for(var i in emotes) {
+        var e = emotes[i];
+        for(var j in e) {
+            var mote = e[j];
+            if(typeof mote == 'string') {
+                mote = mote.split('-');
+                mote = [parseInt(mote[0]), parseInt(mote[1])];
+                var length =  mote[1] - mote[0],
+                    empty = Array.apply(null, new Array(length + 1)).map(function() { return '' });
+                splitText = splitText.slice(0, mote[0]).concat(empty).concat(splitText.slice(mote[1] + 1, splitText.length));
+                splitText.splice(mote[0], 1, '<img class="emoticon" src="http://static-cdn.jtvnw.net/emoticons/v1/' + i + '/3.0">');
+            }
+        }
+    }
+    return splitText.join('');
+}
 function findUsername(nameGiven, nameToFind){
   return nameGiven == nameToFind;
 }

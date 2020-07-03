@@ -97,3 +97,6 @@ h1, h3{
 .italic{
   font-style: italic;
 }
+.emoticon{
+  width: 30px;
+}

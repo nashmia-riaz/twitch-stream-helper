@@ -1,9 +1,8 @@
 
 var usersInChat = [];
-var emotes;
-var mG;
+var channelNameString = "p4nash";
+
 $(function(){
-var channelName = "p4nash";
 console.log("I'm ready, Mr. Krabs!");
 
 console.log(usersInChat);
@@ -97,9 +96,9 @@ ComfyJS.onSubMysteryGift=( gifterUser, numbOfSubs, senderCount, subTierInfo, ext
     gifterUser+' gifted '+numbOfSubs+' '+subTierInfo.planName+' subs to the channel! They\'ve gifted '+senderCount+' to the channel.');
 }
 
-ComfyJS.Init( channelName );
+ComfyJS.Init( channelNameString );
 
-$('#channelName').html(channelName);
+$('#channelName').html(channelNameString);
 
 });
 
@@ -116,7 +115,15 @@ function AddMessage(user, message, extra){
   emotes = extra.messageEmotes;
   var finalMsg = formatEmotes(message, emotes);
 
-  var messageElement = "<div class='message'>"+
+  var forSomeoneElse = isAddressedToSomeoneElse(message.toLowerCase());
+  var forYou = isAddressedToYou(message.toLowerCase());
+
+  var messageType = "";
+  if(forSomeoneElse) messageType = "unhighlight";
+  if(!forSomeoneElse) messageType = "normal";
+  if(forYou) messageType = "highlight";
+
+  var messageElement = "<div class='message "+messageType+"'>"+
     "<span class='userName bold'>"+user+"</span>"+
     "<span class='messageContent'>"+finalMsg+"</span>"
   +"</div>";
@@ -125,6 +132,23 @@ function AddMessage(user, message, extra){
   $('#messagesList').animate({scrollTop: $('#messagesList')[0].scrollHeight}, 500);
 }
 
+
+function isAddressedToSomeoneElse(content){
+  if(content.search('@') < 0)
+    return false;
+
+  if(content.search("@"+channelNameString) >= 0)
+    return false;
+
+  return true;
+}
+
+function isAddressedToYou(content){
+  if(content.search("@"+channelNameString) >= 0)
+    return true;
+
+  return false;
+}
 
 function formatEmotes(text, emotes) {
     var splitText = text.split('');

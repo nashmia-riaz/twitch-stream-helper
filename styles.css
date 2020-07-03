@@ -61,11 +61,13 @@ h1, h3{
 }
 
 .message, .event{
-  background-color: rgba(40, 10, 60, 0.85);
   backdrop-filter: blur(5px);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
+}
+.event{
+  background-color: rgba(40, 10, 60, 0.85);
 }
 
 .user{
@@ -99,4 +101,22 @@ h1, h3{
 }
 .emoticon{
   width: 30px;
+}
+
+.highlight{
+  background-color: rgba(40, 10, 60, 0.85);
+  animation: pulse 1s linear infinite;
+}
+
+.normal{
+  background-color: rgba(40, 10, 60, 0.85);
+}
+
+.unhighlight{
+  background-color: rgba(40, 10, 60, 0.6);
+}
+@keyframes pulse {
+  0% {background-color: rgba(40, 10, 60, 0.85);}
+  50% {background-color: rgba(56, 10, 87, 0.85);}
+  100% {background-color: rgba(40, 10, 60, 0.85);}
 }

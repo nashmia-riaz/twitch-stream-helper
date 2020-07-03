@@ -1,6 +1,6 @@
 
 var usersInChat = [];
-var channelNameString = "thefreakiestfox";
+var channelNameString = "p4nash";
 
 $(function(){
 console.log("I'm ready, Mr. Krabs!");

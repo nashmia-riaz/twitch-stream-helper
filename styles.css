@@ -46,7 +46,7 @@ h1, h3{
   scrollbar-width: none;  /* Firefox */
 }
 
-.userEvent{
+.userEvent,.userName{
   font-weight: 900;
   color: #ff0055;
   font-size: 18px;
@@ -73,6 +73,9 @@ h1, h3{
 }
 .event{
   background-color: rgba(40, 10, 60, 0.85);
+  font-size: 1.2em;
+  font-weight: 400;
+  color: white;
 }
 
 .user{
@@ -83,10 +86,10 @@ h1, h3{
   display: block;
 }
 
-.userName{
+/* .userName{
   letter-spacing: 2px;
   color: #ff0055;
-}
+} */
 
 .messageContent{
   margin-top: 5px;
